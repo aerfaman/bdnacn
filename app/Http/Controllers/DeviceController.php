@@ -67,70 +67,29 @@ class DeviceController extends Controller
         $device->people_id = Input::get('owner');
         $device->created_at = $createat;
         $device->save();
-        if (!Input::get('cpu') == "") {
-            $id = explode('##', Input::get('harddisk'))[0];
-            if ($id) {
-                $asset = asset::find($id);
-                $asset->status = 'using';
-                $asset->device_id = $device->id;
-                $asset->save();
-            } else {
-                $asset = new asset;
-                $asset->type = 'cpu';
-                $asset->name = Input::get('cpu');
-                $asset->device_id = $device->id;
-                $asset->created_at = $createat;
-                $asset->save();
+        $assetAaary=['cpu','memory','mainboard','harddisk'];
+        foreach ($assetAaary as $a) {
+            if (!Input::get($a) == "") {
+                $allAsset = explode(';', Input::get($a));
+                foreach ($allAsset as $key) {    
+                    if (strpos($key,'##')) {
+                        $id = explode('##',$key)[0];
+                        $asset = asset::find($id);
+                        $asset->status = 'using';
+                        $asset->device_id = $device->id;
+                        $asset->save();
+                    } else {
+                        $asset = new asset;
+                        $asset->type = $a;
+                        $asset->name = $key;
+                        $asset->device_id = $device->id;
+                        $asset->created_at = $createat;
+                        $asset->save();
+                    }
+                }  
             }
         }
-        if (!Input::get('memory') == "") {
-            $id = explode('##', Input::get('harddisk'))[0];
-            if ($id) {
-                $asset = asset::find($id);
-                $asset->status = 'using';
-                $asset->device_id = $device->id;
-                $asset->save();
-            } else {
-                $asset = new asset;
-                $asset->type = 'memory';
-                $asset->name = Input::get('memory');
-                $asset->device_id = $device->id;
-                $asset->created_at = $createat;
-                $asset->save();
-            }
-        }
-        if (!Input::get('mainboard') == "") {
-            $id = explode('##', Input::get('harddisk'))[0];
-            if ($id) {
-                $asset = asset::find($id);
-                $asset->status = 'using';
-                $asset->device_id = $device->id;
-                $asset->save();
-            } else {
-                $asset = new asset;
-                $asset->type = 'mainboard';
-                $asset->name = Input::get('mainboard');
-                $asset->device_id = $device->id;
-                $asset->created_at = $createat;
-                $asset->save();
-            }
-        }
-        if (!Input::get('harddisk') == "") {
-            $id = explode('##', Input::get('harddisk'))[0];
-            if ($id) {
-                $asset = asset::find($id);
-                $asset->status = 'using';
-                $asset->device_id = $device->id;
-                $asset->save();
-            } else {
-                $asset = new asset;
-                $asset->type = 'harddisk';
-                $asset->name = Input::get('harddisk');
-                $asset->device_id = $device->id;
-                $asset->created_at = $createat;
-                $asset->save();
-            }
-        }
+        
         $message = [
             'type' => 'success',
             'message' => 'create new device success',

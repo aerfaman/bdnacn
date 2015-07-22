@@ -99,8 +99,18 @@ $(document).ready(function() {
 $(document).on('click','.idle_asset',function(){
     var idle_value=$(this).html();
     var this_input=$(this).parents('.input-group').children(":last");
-    this_input.val(idle_value);
-
+    var this_input_val=this_input.val();
+    if (this_input_val=="") {
+        this_input.val(idle_value);
+        return;
+    }
+    if (this_input_val.indexOf(idle_value)>=0) {
+        return;
+    }
+    else
+    {
+        this_input.val(this_input_val+';'+idle_value);
+    }
 });
 
 } );
