@@ -75,6 +75,12 @@ class DeviceController extends Controller
                     if (strpos($key,'##')) {
                         $id = explode('##',$key)[0];
                         $asset = asset::find($id);
+                        if ($asset->status=='using') {
+                            $message=[
+                                'message' => $key.'already using',
+                            ];
+                            return Redirect::back()->withInput()->withErrors($message);
+                        }
                         $asset->status = 'using';
                         $asset->device_id = $device->id;
                         $asset->save();
@@ -91,7 +97,6 @@ class DeviceController extends Controller
         }
         
         $message = [
-            'type' => 'success',
             'message' => 'create new device success',
         ];
         return Redirect::back()->withInput()->withErrors($message);

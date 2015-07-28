@@ -42,6 +42,7 @@
                                 @endforeach
                             </div>
             @endif
+
             <form action="{{ URL('/createdevice')}}" method="POST" class="form-horizontal" role="form">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
@@ -184,7 +185,7 @@
                             </div>
                             <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-10">
-                                        <button class="btn btn-primary" type="submit">Create Now</button>
+                                        <button class="btn btn-primary" id='form-submit'>Create Now</button>
                                     </div>
                                 </div>
 
@@ -220,8 +221,8 @@
         <tr class="gradeX">
             <td>{{ $device->id }}</td>
             <td>{{ $device->name }}</td>
-            <td>{{ $device->mac }}</td>
             <td>{{ $device->ip }}</td>
+            <td>{{ $device->mac }}</td>
             <td>{{ $device->system }}</td>
             <td>{{ $device->type }}</td>
             <td>{{ $device->status }}</td>

@@ -27,3 +27,5 @@ Route::post('/getassetfromdevice','DeviceController@getassetfromdevice');
 Route::post('/createdevice','DeviceController@createdevice');
 Route::get('/people','PeopleController@index');
 Route::post('/createpeople','PeopleController@createpeople');
+Route::get('/service','ServiceController@index');
+Route::post('/createservice','ServiceController@createservice');

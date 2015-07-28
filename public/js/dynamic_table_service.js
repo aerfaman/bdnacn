@@ -1,29 +1,14 @@
-$(document).ready(function() {
-    function fnFormatDetails ( oTable, nTr )
-{
-    var aData = oTable.fnGetData( nTr );
-    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    $.ajax({
-        url:'/devices',
-        type:'post',
-        headers: {
-
-'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-
-},
-        data:{'id':aData[1]},
-        success:function(data){
-                var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-    sOut += '<tr><td>Belong to:</td><td>'+data['name']+'</td></tr>';
-    sOut += '<tr><td>Type:</td><td>'+data['type']+'</td></tr>';
-    sOut += '<tr><td>Status:</td><td>'+data['status']+'</td></tr>';
-    sOut += '</table>';
-        }
-    });
-
-    return sOut;
-    
-}
+$(document).ready(function(){
+	$(document).on('click','#form-submit',function(){
+		$name=$('input[name="name"]').val();
+		$type=$('input[name="type"]').val();
+		$address=$('input[name="address"]').val();
+		$username=$('input[name="username"]').val();
+		$password=$('input[name="password"]').val();
+		$ip=$('input[name="ip"]').val();
+		$remark=$('input[name="remark"]').val();
+		$('#create_service').submit();
+	});
 
     $('#dynamic-table').dataTable( {
         "aaSorting": [[ 4, "desc" ]]
@@ -115,5 +100,4 @@ $(document).ready(function() {
     $(document).on('click','#form-submit',function(){
         
     });
-
-} );
+});
