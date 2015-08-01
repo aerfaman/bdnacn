@@ -83,11 +83,18 @@ $(document).ready(function() {
 },
         data:{'id':aData[1]},
         success:function(data){
-                var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+            if (data) {var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
     sOut += '<tr><td>Belong to:</td><td>'+data['name']+'</td></tr>';
     sOut += '<tr><td>Type:</td><td>'+data['type']+'</td></tr>';
     sOut += '<tr><td>Status:</td><td>'+data['status']+'</td></tr>';
-    sOut += '</table>';
+    sOut += '<tr><td><a href="/editdevice/'+data['id']+'">Delete from device</a></td></tr>';
+    sOut += '</table>';}else{
+        var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+        sOut +='<tr><td>This asset is idle.</td></tr>'
+        sOut += '<tr><td><a href="/deleteasset/'+aData[1]+'">Delete</a></td></tr>';
+        sOut += '</table>';
+    }
+                
     oTable.fnOpen( nTr, sOut, 'details' );
         }
     });

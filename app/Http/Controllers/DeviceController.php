@@ -36,7 +36,7 @@ class DeviceController extends Controller
     {
         $devices = devices::find(Input::get('id'));
         $owner = $devices->belongsTopeople;
-        $asset = $devices->hasManyasset;
+        $asset = $devices->hasManyasset()->where('status','<>','deleted')->get();
         $asset['owner'] = $owner;
 
         return $asset;
@@ -88,6 +88,7 @@ class DeviceController extends Controller
                         $asset = new asset;
                         $asset->type = $a;
                         $asset->name = $key;
+                        $asset->status= 'using';
                         $asset->device_id = $device->id;
                         $asset->created_at = $createat;
                         $asset->save();
@@ -121,7 +122,20 @@ class DeviceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $people = People::all();
+        $cpu = asset::whereRaw('status = "idle" and type = "cpu"')->get();
+        $memory = asset::whereRaw('status="idle" and type="memory"')->get();
+        $mainboard = asset::whereRaw('status="idle" and type="mainboard"')->get();
+        $harddisk = asset::whereRaw('status="idle" and type="harddisk"')->get();
+        $device=devices::find($id);
+        $owner = $device->belongsTopeople;
+        $device['owner']=$owner;
+        $asset=array();
+        $asset['cpu']=asset::whereRaw('type="cpu" and device_id='.$id.' and status="using"')->get();
+        $asset['memory']=asset::whereRaw('type="memory" and device_id='.$id.' and status="using"')->get();
+        $asset['harddisk']=asset::whereRaw('type="harddisk" and device_id='.$id.' and status="using"')->get();
+        $asset['mainboard']=asset::whereRaw('type="mainboard" and device_id='.$id.' and status="using"')->get();
+        return view('hardware.editdevice')->withDevices($device)->withPeople($people)->withCpu($cpu)->withMemory($memory)->withMainboard($mainboard)->withHarddisk($harddisk)->withAsset($asset);
     }
 
     /**
@@ -130,19 +144,69 @@ class DeviceController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function editdevice($id)
     {
-        //
+        $device=devices::find($id);
+        $device->name = Input::get('name');
+        $device->system = Input::get('system');
+        $device->mac = Input::get('mac');
+        $device->ip = Input::get('ip');
+        $device->type = Input::get('type');
+        $device->people_id = Input::get('owner');
+        $device->save();
+        $assetAaary=['cpu','memory','mainboard','harddisk'];
+        foreach ($assetAaary as $a) {
+            if (!Input::get($a) == "") {
+                $allAsset = explode(';', Input::get($a));
+                foreach ($allAsset as $key) {    
+                    if (strpos($key,'##')) {
+                        $id = explode('##',$key)[0];
+                        $asset = asset::find($id);
+                        if ($asset->status=='using') {
+                            $message=[
+                                'message' => $key.'already using',
+                            ];
+                            return Redirect::back()->withInput()->withErrors($message);
+                        }
+                        $asset->status = 'using';
+                        $asset->device_id = $device->id;
+                        $asset->save();
+                    } else {
+                        $asset = new asset;
+                        $asset->type = $a;
+                        $asset->name = $key;
+                        $asset->status='using';
+                        $asset->device_id = $device->id;
+                        $asset->created_at = date('Y-m-d');
+                        $asset->save();
+                    }
+                }  
+            }
+        }
+        return Redirect::back();
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
+    public function deletedevice($id)
     {
-        //
+        $device=devices::find($id);
+        $device->delete();
+        $asset=$device->hasManyasset()->get();
+        foreach ($asset as $a){
+            $a->status='idle';
+            $a->save();
+        }
+        return redirect('/device');
     }
+    public function deletedeviceall($id)
+    {
+        $device=devices::find($id);
+        $asset=$device->hasManyasset()->get();
+        foreach ($asset as $a){
+            // dd($a);
+            $a->status='deleted';
+            $a->save();
+        }
+        $device->delete();
+        return redirect('/device');
+    }
+    
 }

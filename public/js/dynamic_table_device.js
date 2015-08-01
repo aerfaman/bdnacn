@@ -89,6 +89,7 @@ $(document).ready(function() {
                 if (d=='owner') continue;
                 sOut += '<tr><td>'+data[d]['type']+': </td><td>'+data[d]['name']+'</td></tr>';
             }
+            sOut +='<tr><td><a href="/editdevice/'+aData[1]+'">编辑或删除这个设备</a></td><tr>'
             sOut += '</table>';
             oTable.fnOpen( nTr, sOut, 'details' );
         }

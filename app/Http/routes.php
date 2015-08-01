@@ -29,3 +29,8 @@ Route::get('/people','PeopleController@index');
 Route::post('/createpeople','PeopleController@createpeople');
 Route::get('/service','ServiceController@index');
 Route::post('/createservice','ServiceController@createservice');
+Route::get('/editdevice/{id}','DeviceController@edit');
+Route::post('/editdevice/{id}','DeviceController@editdevice');
+Route::match(['get','post'],'/deleteasset/{id}','AssetController@deleteAsset');
+Route::get('/deletedevice/{id}','DeviceController@deletedevice');
+Route::get('/deletedeviceall/{id}','DeviceController@deletedeviceall');

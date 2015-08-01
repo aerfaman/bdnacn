@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\asset;
 use Input;
+use Redirect;
 class AssetController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class AssetController extends Controller
      */
     public function index()
     {
-        return view('hardware.asset')->withAssets(asset::all());
+        return view('hardware.asset')->withAssets(asset::where('status','<>','deleted')->get());
     }
 
     /**
@@ -37,9 +38,17 @@ class AssetController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function deleteAsset($id)
     {
-        //
+        $asset=asset::find($id);
+        $asset->status='deleted';
+        if($asset->save())
+        {
+            return Redirect::back();    
+        }else{
+            return Redirect::back();
+        }
+        
     }
 
     /**
