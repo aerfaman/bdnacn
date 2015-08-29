@@ -78,27 +78,59 @@ $(document).ready(function() {
         type:'post',
         headers: {
 
-'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
 
-},
+        },
         data:{'id':aData[1]},
         success:function(data){
             if (data) {var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-    sOut += '<tr><td>Belong to:</td><td>'+data['name']+'</td></tr>';
-    sOut += '<tr><td>Type:</td><td>'+data['type']+'</td></tr>';
-    sOut += '<tr><td>Status:</td><td>'+data['status']+'</td></tr>';
-    sOut += '<tr><td><a href="/editdevice/'+data['id']+'">Delete from device</a></td></tr>';
-    sOut += '</table>';}else{
-        var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-        sOut +='<tr><td>This asset is idle.</td></tr>'
-        sOut += '<tr><td><a href="/deleteasset/'+aData[1]+'">Delete</a></td></tr>';
-        sOut += '</table>';
-    }
+                sOut += '<tr><td>Belong to:</td><td>'+data['name']+'</td></tr>';
+                sOut += '<tr><td>Type:</td><td>'+data['type']+'</td></tr>';
+                sOut += '<tr><td>Status:</td><td>'+data['status']+'</td></tr>';
+                sOut += '<tr><td><a href="/editdevice/'+data['id']+'">Delete from device</a></td></tr>';
+                sOut += '</table>';}
+            else{
+                var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+                sOut +='<tr><td>This asset is idle.</td></tr>'
+                sOut += '<tr><td><a class="edit-asset-delete" onclick="deleteasset('+aData[1]+')" >Delete</a></td></tr>';
+                sOut += '</table>';
+             }
                 
-    oTable.fnOpen( nTr, sOut, 'details' );
+        oTable.fnOpen( nTr, sOut, 'details' );
         }
     });
             
         }
-    } );
+    });
+
 } );
+    function deleteasset($id){
+
+        // $id=$(this).attr('id');
+        $url='/deleteasset'
+        $('#all-cover-box').show();
+
+        $('#all-cover-no').on('click',function(){
+            $('#all-cover-box').hide();
+        });
+        $('#all-cover-yes').on('click',function(){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajax({
+                url:$url,
+                type:'post',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                data:{'id':$id},
+                success:function(data){
+                        if (data=='success') {
+                            location.reload();
+                        }else{
+                                alert('data');
+                        }
+                }
+            });
+        });
+    
+    }

@@ -22,8 +22,10 @@ var EditableTable = function () {
                 jqTds[1].innerHTML = '<input type="text" class="form-control small" value="' + aData[1] + '">';
                 jqTds[2].innerHTML = '<input type="text" class="form-control small" value="' + aData[2] + '">';
                 jqTds[3].innerHTML = '<input type="text" class="form-control small" value="' + aData[3] + '">';
-                jqTds[4].innerHTML = '<a class="edit" href="">Save</a>';
-                jqTds[5].innerHTML = '<a class="cancel" href="">Cancel</a>';
+                jqTds[4].innerHTML = '<input type="text" class="form-control small" value="' + aData[4] + '">';
+                jqTds[5].innerHTML = '<input type="text" class="form-control small" value="' + aData[5] + '">';
+                jqTds[6].innerHTML = '<a class="edit" href="">Save</a>';
+                jqTds[7].innerHTML = '<a class="cancel" href="">Cancel</a>';
             }
 
             function saveRow(oTable, nRow) {
@@ -77,7 +79,7 @@ var EditableTable = function () {
 
             $('#editable-sample_new').click(function (e) {
                 e.preventDefault();
-                var aiNew = oTable.fnAddData(['', '', '', '',
+                var aiNew = oTable.fnAddData(['', '', '', '','','',
                         '<a class="edit" href="">Edit</a>', '<a class="cancel" data-mode="new" href="">Cancel</a>'
                 ]);
                 var nRow = oTable.fnGetNodes(aiNew[0]);

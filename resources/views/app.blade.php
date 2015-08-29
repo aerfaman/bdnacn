@@ -7,7 +7,7 @@
   <meta name="author" content="ThemeBucket">
   <link rel="shortcut icon" href="#" type="image/png">
 
-  <title>Left menu collapsed</title>
+  <title>IT</title>
 
   <link href="{{ URL::asset('/') }}css/style.css" rel="stylesheet">
   <link href="{{ URL::asset('/') }}css/style-responsive.css" rel="stylesheet">
@@ -177,10 +177,15 @@
             Footer contents goes here
         </footer>
         <!--footer section end-->
-
-
+<div id='all-cover-box' style='display:none;width:100%;height:100%;background-color:#000000;top:0px;left:0px;position:fixed;z-index:10000;background:rgba(0,0,0,0.4);TEXT-ALIGN:center;float:left;'>
+<div id='all-cover-text' style="z-index:10001;position:fixed;top:15%;left:40%;MARGIN-RIGHT:auto;MARGIN-LEFT:auto;float:left;color:#ffffff;"><h2></h2></div>
+<div style='position:fixed;top:40%;left:45%;z-index:10001;'><button id='all-cover-yes' class='btn btn-danger btn-lg' >你确定???</button>
+<button id='all-cover-no' class='btn btn-warning btn-lg'>再等等!!!</button>
+</div>
+</div>
     </div>
     <!-- main content end-->
+
 </section>
 
 <!-- Placed js at the end of the document so the pages load faster -->
@@ -194,12 +199,14 @@
 <!--dynamic table-->
 <script type="text/javascript" language="javascript" src="{{ URL::asset('/') }}js/advanced-datatable/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="{{ URL::asset('/') }}js/data-tables/DT_bootstrap.js"></script>
+<script src="{{ URL::asset('/') }}js/scripts.js"></script>
 <!--dynamic table initialization -->
 @yield('js')
 
 <!--common scripts for all pages-->
-<script src="{{ URL::asset('/') }}js/scripts.js"></script>
+
 
 
 </body>
+
 </html>

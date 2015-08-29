@@ -185,8 +185,9 @@ class DeviceController extends Controller
         }
         return Redirect::back();
     }
-    public function deletedevice($id)
+    public function deletedevice()
     {
+        $id=Input::get('id');
         $device=devices::find($id);
         $device->delete();
         $asset=$device->hasManyasset()->get();
@@ -194,10 +195,11 @@ class DeviceController extends Controller
             $a->status='idle';
             $a->save();
         }
-        return redirect('/device');
+        return 'success';
     }
-    public function deletedeviceall($id)
+    public function deletedeviceall()
     {
+        $id=Input::get('id');
         $device=devices::find($id);
         $asset=$device->hasManyasset()->get();
         foreach ($asset as $a){
@@ -206,7 +208,7 @@ class DeviceController extends Controller
             $a->save();
         }
         $device->delete();
-        return redirect('/device');
+        return 'success';
     }
     
 }

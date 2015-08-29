@@ -38,15 +38,16 @@ class AssetController extends Controller
      *
      * @return Response
      */
-    public function deleteAsset($id)
+    public function deleteAsset()
     {
+        $id=Input::get('id');
         $asset=asset::find($id);
         $asset->status='deleted';
         if($asset->save())
         {
-            return Redirect::back();    
+            return 'success';    
         }else{
-            return Redirect::back();
+            return 'faile';
         }
         
     }

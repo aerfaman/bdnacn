@@ -1,3 +1,10 @@
+// $(document).ready(function(){
+//   $('#all-cover-no').on('click',function(){
+//     $('#all-cover-box').hide();
+//   });
+
+//   }
+// });
 
 (function() {
     "use strict";

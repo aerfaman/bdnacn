@@ -24,8 +24,8 @@
             Create a new device
             <span class="tools pull-right">
                 <div class="btn-group">
-                    <button onclick="location.href='/deletedeviceall/{{ $devices->id }}'" class="btn btn-danger" type="button">完全删除这个设备</button>
-                    <button onclick="location.href='/deletedevice/{{ $devices->id }}'" class="btn btn-warning " type="button">删除设备保留硬件</button>
+                    <button  id='{{ $devices->id}}'  class="btn btn-danger delete-device-complete" type="button">完全删除这个设备</button>
+                    <button id='{{ $devices->id}}' class="btn btn-warning delete-device" type="button">删除设备保留硬件</button>
                                 
              </span>
         </header>
@@ -128,7 +128,7 @@
                                 <div>
 
                                     @foreach ( $asset['cpu'] as $c)
-                                    {{ $c->name }}  <a href="/deleteasset/{{ $c->id }}">Delete</a><br>
+                                    {{ $c->name }}  <a id='{{$c->id}}' href="#" class='edit-asset-delete'>Delete</a><br>
                                     @endforeach
                                 </div>
                                 </div>
@@ -150,7 +150,7 @@
                             <div>
 
                                     @foreach ( $asset['memory'] as $c)
-                                    {{ $c->name }}  <a href="/deleteasset/{{ $c->id }}">Delete</a><br>
+                                    {{ $c->name }}  <a id='{{$c->id}}' href="#" class='edit-asset-delete'>Delete</a><br>
                                     @endforeach
                                 </div>
                         </div>
@@ -172,7 +172,7 @@
                             <div>
 
                                     @foreach ( $asset['mainboard'] as $c)
-                                    {{ $c->name }}  <a href="/deleteasset/{{ $c->id }}">Delete</a><br>
+                                    {{ $c->name }}  <a id='{{$c->id}}' href="#" class='edit-asset-delete'>Delete</a><br>
                                     @endforeach
                                 </div>
                                 </div>
@@ -185,7 +185,7 @@
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Idle assets <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         @foreach ( $harddisk as $c )
-                                        <li><a class='idle_asset'>{{ $c->id }}##{{ $c->name}}</a></li>
+                                        <li><a class='idle_asset' >{{ $c->id }}##{{ $c->name}}</a></li>
                                         @endforeach
                                     </ul>
                                 </div>
@@ -194,7 +194,7 @@
                             <div>
 
                                     @foreach ( $asset['harddisk'] as $c)
-                                    {{ $c->name }}  <a href="/deleteasset/{{ $c->id }}">Delete</a><br>
+                                    {{ $c->name }}  <a id='{{$c->id}}' href="#" class='edit-asset-delete'>Delete</a><br>
                                     @endforeach
                                 </div>
                                 </div>
@@ -212,5 +212,5 @@
 @endsection
 
 @section('js')
-<!-- <script src="{{ URL::asset('/') }}js/dynamic_table_device.js"></script> -->
+<script src="{{ URL::asset('/') }}js/dynamic_table_editedevice.js"></script>
 @endsection
