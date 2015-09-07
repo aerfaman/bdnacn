@@ -209,8 +209,10 @@
                         </form>
         </div></div></div>
         </div>
+
 @endsection
 
 @section('js')
 <script src="{{ URL::asset('/') }}js/dynamic_table_editedevice.js"></script>
+
 @endsection

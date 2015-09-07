@@ -175,7 +175,7 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Tittle</th>
+                    <th>Title</th>
                     <th>Department</th>
                     <th>Phone</th>
                     <th>Email</th>
@@ -205,7 +205,7 @@
                 </tbody> -->
                 <tbody>
             @foreach ($people as $p)
-        <tr class="gradeX">
+        <tr class="gradeX" id='{{$p->id}}'>
             <td>{{ $p->name }}</td>
             <td>{{ $p->title }}</td>
             <td>{{ $p->department }}</td>

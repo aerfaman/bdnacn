@@ -27,7 +27,7 @@ class PeopleController extends Controller
      *
      * @return Response
      */
-    public function createpeople(Request $request)
+    public function createpeople()
     {
         $people=new People;
         $people->name=Input::get('name');
@@ -35,8 +35,9 @@ class PeopleController extends Controller
         $people->department=Input::get('department');
         $people->phone=Input::get('phone');
         $people->email=Input::get('email');
+        $people->remark=Input::get('remark');
         $people->save();
-        return Redirect::back();
+        return 'success';
 
     }
 

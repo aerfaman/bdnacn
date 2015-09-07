@@ -21,6 +21,7 @@ use Maatwebsite\Excel\Classes\PHPExcel;
 //     return view('test/horizontal_menu');
 // // });
 // Route::get('/',)
+Route::get('/','HomeController@index');
 Route::get('/assets','AssetController@index');
 Route::post('/getdevicefromasset','AssetController@getdevicefromasset');
 Route::get('/device','DeviceController@index');

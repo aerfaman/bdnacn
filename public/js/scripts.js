@@ -1,10 +1,66 @@
-// $(document).ready(function(){
-//   $('#all-cover-no').on('click',function(){
-//     $('#all-cover-box').hide();
-//   });
+// var Warningcover = function (){
+//    return {
+//         init: function () {
+//           function test(){
+//             $('#all-cover-box').show();
+//                 alert('aa');
+//           }
+                
+//                 // $('#all-cover-no').on('click',function(){
+//                 //     $('#all-cover-box').hide();
+//                 // });
 
-//   }
-// });
+//                 // $('#all-cover-yes').on('click',function(){
+//                 //     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+//                 //     $.ajax({
+//                 //         url:$url,
+//                 //         type:'post',
+//                 //         headers: {
+//                 //             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+//                 //         },
+//                 //         data:{'id':$id},
+//                 //         success:function(data){
+//                 //                 if (data=='success') {
+//                 //                     location.reload();
+//                 //                 }else{
+//                 //                         alert('data');
+//                 //                 }
+//                 //         }
+//                 //     });
+//                 // });
+          
+// }
+
+//   };
+// }();
+function warningCoverfun(url,data,text,load){
+        $('#all-cover-box').show();
+        $('#all-cover-text h2').html(text);
+        $('#all-cover-no').on('click',function(){
+            $('#all-cover-box').hide();
+        });
+
+        $('#all-cover-yes').on('click',function(){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajax({
+                url:url,
+                type:'post',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                },
+                data:data,
+                success:function(data){
+                        if (data=='success') {
+                            location.href=load;
+                        }else{
+                                alert('data');
+                        }
+                }
+            });
+        });
+}
 
 (function() {
     "use strict";

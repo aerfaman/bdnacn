@@ -30,13 +30,42 @@ var EditableTable = function () {
 
             function saveRow(oTable, nRow) {
                 var jqInputs = $('input', nRow);
-                oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-                oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-                oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-                oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 4, false);
-                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 5, false);
-                oTable.fnDraw();
+                data={
+                    'name':jqInputs[0].value,
+                    'title':jqInputs[1].value,
+                    'department':jqInputs[2].value,
+                    'phone':jqInputs[3].value,
+                    'email':jqInputs[4].value,
+                    'remark':jqInputs[5].value
+                }
+                url='/createpeople';
+                // alert(jqInputs);
+
+                $.ajax({
+                    url:url,
+                    type:'post',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    data:data,
+                    success:function(data){
+                        if (data=='success') {
+                            // alert('success');
+                            oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
+                            oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
+                            oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
+                            oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
+                            oTable.fnUpdate(jqInputs[4].value, nRow, 4, false);
+                            oTable.fnUpdate(jqInputs[5].value, nRow, 5, false);
+                            oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 6, false);
+                            oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 7, false);
+                            oTable.fnDraw();
+                        }else{
+                                alert('faile');
+                        }
+                    }
+                });
+                
             }
 
             function cancelEditRow(oTable, nRow) {
