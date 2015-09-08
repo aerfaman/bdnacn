@@ -1,11 +1,10 @@
-$(document).ready(function() {
 
     $('.edit-asset-delete').on('click',function(){
         $id=$(this).attr('id');
         data={
             'id':$id
         }
-        warningCoverfun('/deleteasset',data,'确定要删除这个硬件?','/editdevice/'+$id)
+        warningCoverfun('/deleteasset',data,'确定要删除这个硬件?',window.location.href)
     
     // });
     //     $('.delete-device-complete').on('click',function(){
@@ -83,4 +82,3 @@ $(document).ready(function() {
     
     });
 
-});

@@ -35,25 +35,28 @@
 //   };
 // }();
 function warningCoverfun(url,data,text,load){
+        u=url;
+        d=data;
+        t=text;
+        l=load;
         $('#all-cover-box').show();
-        $('#all-cover-text h2').html(text);
+        $('#all-cover-text h2').html(t);
         $('#all-cover-no').on('click',function(){
             $('#all-cover-box').hide();
         });
-
         $('#all-cover-yes').on('click',function(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
             $.ajax({
-                url:url,
+                url:u,
                 type:'post',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                 },
-                data:data,
+                data:d,
                 success:function(data){
                         if (data=='success') {
-                            location.href=load;
+                            location.href=l;
                         }else{
                                 alert('data');
                         }

@@ -108,12 +108,12 @@ var EditableTable = function () {
 
             $('#editable-sample_new').click(function (e) {
                 e.preventDefault();
-                var aiNew = oTable.fnAddData(['', '', '', '','','',
-                        '<a class="edit" href="">Edit</a>', '<a class="cancel" data-mode="new" href="">Cancel</a>'
+                var aiNew = oTable.fnAddData(['<input type="text" class="form-control small" value="">', '<input type="text" class="form-control small" value="">', '<input type="text" class="form-control small" value="">', '<input type="text" class="form-control small" value="">','<input type="text" class="form-control small" value="">','<input type="text" class="form-control small" value="">',
+                        '<a class="new" href="">save</a>', '<a class="cancel" data-mode="new" href="">Cancel</a>'
                 ]);
-                var nRow = oTable.fnGetNodes(aiNew[0]);
-                editRow(oTable, nRow);
-                nEditing = nRow;
+                // var nRow = oTable.fnGetNodes(aiNew[0]);
+                //  editRow(oTable, nRow);
+                //  nEditing = nRow;
             });
 
             $('#editable-sample a.delete').live('click', function (e) {
