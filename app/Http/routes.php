@@ -44,3 +44,4 @@ Route::get('/test',function(){
     });
 })->store('xls', storage_path('excel'));
 });
+Route::post('/search','HomeController@search');

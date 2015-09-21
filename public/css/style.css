@@ -50,6 +50,28 @@ hr {
 /*-------------------------------
             LOGIN STYLES
 -------------------------------*/
+.tools-box{
+    max-width: 850px;
+    margin: 100px auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+.tools-box button{
+    margin-right: 20px;
+}
+.info-box{
+    max-width: 850px;
+    margin: 100px auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    display: none;
+}
 
 .login-body {
     background: #65cea7 url("../images/login-bg.jpg") no-repeat fixed;
@@ -59,8 +81,8 @@ hr {
 }
 
 .form-signin {
-    max-width: 330px;
-    margin: 100px auto;
+    max-width: 850px;
+    margin: 80px auto;
     background: #fff;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -68,7 +90,7 @@ hr {
 
 .form-signin .form-signin-heading {
     margin: 0;
-    padding: 25px 15px;
+    /*padding: 25px 15px;*/
     text-align: center;
     color: #fff;
     position: relative;

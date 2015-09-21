@@ -66,15 +66,16 @@
 
             <!--sidebar nav start-->
             <ul class="nav nav-pills nav-stacked custom-nav">
-                <li><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-                <li class="menu-list"><a href="#"><i class="fa fa-th-list"></i> <span>Data Tables</span></a>
+                <li><a href="/"><i class="fa fa-home"></i> <span>Control panel</span></a></li>
+                <li class="menu-list nav-active"><a href="#"><i class="fa fa-th-list"></i> <span>Data Tables</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="{{ URL('/device')}}"> Device Table</a></li>
                         <li><a href="{{ URL('/assets')}}"> Asset Table</a></li>
                         <li><a href="{{ URL('/people')}}"> People Table</a></li>
+                        <li><a href="{{ URL('/service')}}"> Service Table</a></li>
                     </ul>
                 </li>
-                <li class="menu-list nav-active"><a href=""><i class="fa fa-laptop"></i> <span>Layouts</span></a>
+                <li class="menu-list "><a href=""><i class="fa fa-laptop"></i> <span>Layouts</span></a>
                     <ul class="sub-menu-list">
                         <li ><a href="blank_page.html"> Blank Page</a></li>
                         <li><a href="boxed_view.html"> Boxed Page</a></li>

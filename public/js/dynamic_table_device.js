@@ -86,9 +86,10 @@ $(document).ready(function() {
             var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
             sOut += '<tr><td>Owner: </td><td>'+data['owner']['name']+'</td></tr>';
             for (var d in data){
-                if (d=='owner') continue;
+                if (d=='owner'||d=='remark') continue;
                 sOut += '<tr><td>'+data[d]['type']+': </td><td>'+data[d]['name']+'</td></tr>';
             }
+            // sOut +='<tr><td>我是标签;我也是标签;<input value="输入标签"> <a href="/test">添加</a></td></tr>'
             sOut +='<tr><td><a href="/editdevice/'+aData[1]+'">编辑或删除这个设备</a></td><tr>'
             sOut += '</table>';
             oTable.fnOpen( nTr, sOut, 'details' );
