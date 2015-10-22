@@ -199,6 +199,14 @@
                                 </div>
                                 </div>
                             </div>
+                                                        <div class="form-group">
+                                <label class="col-lg-2 col-sm-2 control-label">Remark</label>
+                                <div class="col-lg-10">
+                                    <div class="iconic-input right">
+                                        <input name="remark" type="text"class="form-control" value="{{ $devices->remark }}">
+                                    </div>
+                                </div>
+                            </div>
                             
                             <div class="form-group">
                                     <div class="col-lg-offset-2 col-lg-10">

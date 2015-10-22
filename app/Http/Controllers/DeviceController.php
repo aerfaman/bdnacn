@@ -65,6 +65,7 @@ class DeviceController extends Controller
         $device->ip = Input::get('ip');
         $device->type = Input::get('type');
         $device->people_id = Input::get('owner');
+        $device->remark=Input::get('remark');
         $device->created_at = $createat;
         $device->save();
         $assetAaary=['cpu','memory','mainboard','harddisk'];
@@ -153,6 +154,7 @@ class DeviceController extends Controller
         $device->ip = Input::get('ip');
         $device->type = Input::get('type');
         $device->people_id = Input::get('owner');
+        $device->remark=Input::get('remark');
         $device->save();
         $assetAaary=['cpu','memory','mainboard','harddisk'];
         foreach ($assetAaary as $a) {

@@ -44,7 +44,7 @@
 
 <div class="info-box">
         <div class="login-wrap">
-<h3>00:50:56:1d:03:aa</h3>
+<h3 class='info-box-header'>00:50:56:1d:03:aa</h3>
                             <dl class='info-box-dl'>
                                 <dt>IP</dt>
                                 <dd>192.168.11.53</dd>
